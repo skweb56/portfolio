@@ -135,7 +135,7 @@ export function LoadingScreen() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            PHP Developer & Full-Stack Engineer
+            Full Stack Developer & Software Engineer 
           </motion.p>
         </motion.div>
 
