@@ -20,28 +20,28 @@ const Footer = () => {
   const socialLinks = [
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/sarvesh',
+      url: 'https://linkedin.com/in/sarvesh-tiwari-45315b162/',
       icon: Linkedin,
       color: 'hover:text-blue-600',
       bgColor: 'hover:bg-blue-50 dark:hover:bg-blue-950/20'
     },
     {
       name: 'GitHub',
-      url: 'https://github.com/sarvesh',
+      url: 'https://github.com/skweb56',
       icon: Github,
       color: 'hover:text-gray-800 dark:hover:text-white',
       bgColor: 'hover:bg-gray-50 dark:hover:bg-gray-900/20'
     },
     {
       name: 'Twitter',
-      url: 'https://twitter.com/sarvesh',
+      url: 'https://twitter.com/skweb56',
       icon: Twitter,
       color: 'hover:text-blue-400',
       bgColor: 'hover:bg-blue-50 dark:hover:bg-blue-950/20'
     },
     {
       name: 'Email',
-      url: 'mailto:sarvesh@example.com',
+      url: 'mailto:skweb790@gmail.com',
       icon: Mail,
       color: 'hover:text-red-500',
       bgColor: 'hover:bg-red-50 dark:hover:bg-red-950/20'
@@ -57,8 +57,8 @@ const Footer = () => {
 
   const contactInfo = [
     { icon: MapPin, text: 'Surat, Gujarat, India' },
-    { icon: Mail, text: 'sarvesh@example.com' },
-    { icon: Phone, text: '+91 98765 43210' }
+    { icon: Mail, text: 'skweb790@gmail.com' },
+    { icon: Phone, text: '+91 7600221121' } //My phone number
   ]
 
   const currentYear = new Date().getFullYear()
@@ -144,7 +144,7 @@ const Footer = () => {
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-sm sm:text-base text-foreground font-medium">Email</p>
-                  <p className="text-xs sm:text-sm text-muted-foreground">sarvesh@example.com</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">skweb790@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -206,7 +206,7 @@ const Footer = () => {
         >
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
             <div className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground">
-              <span>© 2024 Sarvesh. Made with</span>
+              <span>© 2025 Sarvesh. Made with</span>
               <motion.div
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 1, repeat: Infinity }}

@@ -11,9 +11,12 @@ const Contact = () => {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    company: '' // honeypot
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleMouseEnter = () => setCursorVariant('button')
   const handleMouseLeave = () => setCursorVariant('default')
@@ -29,19 +32,49 @@ const Contact = () => {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulate form submission
-    setIsSubmitted(true)
-    setTimeout(() => setIsSubmitted(false), 3000)
-    setFormData({ name: '', email: '', subject: '', message: '' })
+    setIsSubmitting(true)
+    setIsSubmitted(false)
+    setErrorMessage(null)
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          ...(process.env.NEXT_PUBLIC_CONTACT_API_KEY
+            ? { 'x-api-key': process.env.NEXT_PUBLIC_CONTACT_API_KEY }
+            : {}),
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          company: formData.company,
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      setIsSubmitted(true)
+      setFormData({ name: '', email: '', subject: '', message: '', company: '' })
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Something went wrong')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const contactInfo = [
     {
       icon: Phone,
       title: 'Phone',
-      value: '+91 98765 43210',
+      value: '+91 7600221121',
       description: 'Available Mon-Fri 9AM-6PM',
       color: 'from-blue-500 to-cyan-600',
       bgColor: 'bg-blue-50 dark:bg-blue-950/20'
@@ -49,7 +82,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email',
-      value: 'sarvesh@example.com',
+      value: 'skweb790@gmail.com',
       description: 'I\'ll respond within 24 hours',
       color: 'from-purple-500 to-pink-600',
       bgColor: 'bg-purple-50 dark:bg-purple-950/20'
@@ -74,14 +107,14 @@ const Contact = () => {
     },
     {
       name: 'GitHub',
-      url: 'https://github.com/',
+      url: 'https://github.com/skweb56',
       icon: Github,
       color: 'hover:text-gray-800 dark:hover:text-white',
       bgColor: 'hover:bg-gray-50 dark:hover:bg-gray-900/20'
     },
     {
       name: 'Twitter',
-      url: 'https://twitter.com/sarvesh',
+      url: 'https://twitter.com/skweb56',
       icon: Twitter,
       color: 'hover:text-blue-400',
       bgColor: 'hover:bg-blue-50 dark:hover:bg-blue-950/20'
@@ -221,7 +254,7 @@ const Contact = () => {
             <div className="glass-effect rounded-xl p-6 sm:p-8 border border-border/50">
               <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-6">Send Message</h3>
               
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
@@ -235,6 +268,8 @@ const Contact = () => {
                         required
                         className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 text-sm sm:text-base min-h-[44px] touch-friendly"
                         placeholder="Enter your full name"
+                        value={formData.name}
+                        onChange={handleInputChange}
                       />
                     </div>
                   </div>
@@ -251,6 +286,8 @@ const Contact = () => {
                         required
                         className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 text-sm sm:text-base min-h-[44px] touch-friendly"
                         placeholder="Enter your email"
+                        value={formData.email}
+                        onChange={handleInputChange}
                       />
                     </div>
                   </div>
@@ -267,6 +304,8 @@ const Contact = () => {
                     required
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 text-sm sm:text-base min-h-[44px] touch-friendly"
                     placeholder="What's this about?"
+                    value={formData.subject}
+                    onChange={handleInputChange}
                   />
                 </div>
 
@@ -281,10 +320,26 @@ const Contact = () => {
                     required
                     className="w-full px-4 py-3 bg-background border border-border rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all duration-200 text-sm sm:text-base resize-none"
                     placeholder="Tell me about your project or inquiry..."
+                    value={formData.message}
+                    onChange={handleInputChange}
                   />
                 </div>
 
-                                 <motion.button
+                {/* Honeypot field (hidden visually) */}
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="company">Company</label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formData.company}
+                    onChange={handleInputChange}
+                  />
+                </div>
+
+                  <motion.button
                    type="submit"
                    className="w-full btn-primary py-3 sm:py-4 text-sm sm:text-base font-medium"
                    whileHover={{ scale: 1.02 }}
@@ -294,9 +349,21 @@ const Contact = () => {
                    onTouchStart={handleTouchStart}
                    onTouchEnd={handleTouchEnd}
                  >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </motion.button>
               </form>
+
+              {errorMessage && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="mt-4 p-4 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-lg"
+                >
+                  <p className="text-red-800 dark:text-red-200 text-sm sm:text-base">
+                    ❌ {errorMessage}
+                  </p>
+                </motion.div>
+              )}
 
               {isSubmitted && (
                 <motion.div

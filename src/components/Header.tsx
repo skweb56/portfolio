@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Sun, Moon, Monitor } from 'lucide-react'
-import { useTheme } from '@/components/ThemeProvider'
+import { Menu, X } from 'lucide-react'
 import { useCursor } from '@/components/CursorProvider'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const { theme, setTheme } = useTheme()
   const { setCursorVariant } = useCursor()
 
   useEffect(() => {
@@ -32,11 +30,7 @@ const Header = () => {
     { href: '#contact', label: 'Contact' },
   ]
 
-  const themeOptions = [
-    { value: 'light', icon: Sun, label: 'Light' },
-    { value: 'dark', icon: Moon, label: 'Dark' },
-    // { value: 'system', icon: Monitor, label: 'System' },
-  ]
+  
 
   return (
     <motion.header
@@ -79,39 +73,8 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Theme Toggle & Mobile Menu Button */}
+          {/* Mobile Menu Button */}
           <div className="flex items-center gap-4">
-            {/* Theme Toggle */}
-            <div className="relative group">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                className="p-2 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                aria-label="Toggle theme"
-              >
-                <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-foreground" />
-              </motion.button>
-              
-              {/* Theme Dropdown */}
-              <div className="absolute right-0 top-full mt-2 w-32 bg-background border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                {themeOptions.map((option) => (
-                  <button
-                    key={option.value}
-                    className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-muted transition-colors ${
-                      theme === option.value ? 'text-primary' : 'text-muted-foreground'
-                    }`}
-                  >
-                    <option.icon className="w-4 h-4" />
-                    {option.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile Menu Button */}
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}

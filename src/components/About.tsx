@@ -43,9 +43,8 @@ const About = () => {
       color: 'from-green-500 to-emerald-600',
       skills: [
         { name: 'Git & GitHub', level: 92, color: 'from-green-500 to-emerald-600' },
-        { name: 'Docker', level: 75, color: 'from-green-500 to-emerald-600' },
-        { name: 'AWS', level: 70, color: 'from-green-500 to-emerald-600' },
-        { name: 'Figma', level: 80, color: 'from-green-500 to-emerald-600' }
+        { name: 'Vercel', level: 75, color: 'from-green-500 to-emerald-600' },
+        { name: 'Jira', level: 70, color: 'from-green-500 to-emerald-600' },
       ]
     }
   ]
@@ -324,9 +323,8 @@ const About = () => {
                   <div className="space-y-3">
                     {[
                       { name: 'Git & GitHub', level: 92 },
-                      { name: 'Docker', level: 75 },
-                      { name: 'AWS', level: 70 },
-                      { name: 'Figma', level: 80 }
+                      { name: 'Vercel', level: 75 },
+                      { name: 'Jira', level: 70 },
                     ].map((skill) => (
                       <div key={skill.name} className="space-y-2">
                         <div className="flex justify-between items-center">
@@ -363,9 +361,9 @@ const About = () => {
               </h4>
               <div className="flex flex-wrap gap-3">
                 {[
-                  'RESTful APIs', 'GraphQL', 'WebSocket', 'JWT Authentication',
+                  'RESTful APIs', 'WebSocket', 'JWT Authentication',
                   'Responsive Design', 'Progressive Web Apps', 'SEO Optimization',
-                  'Performance Optimization', 'Unit Testing', 'CI/CD',
+                  'Performance Optimization', 'Unit Testing',
                   'Agile Methodology', 'Team Leadership', 'Project Management'
                 ].map((skill, index) => (
                   <motion.span

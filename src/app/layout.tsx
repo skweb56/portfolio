@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     'Gujarat',
     'India'
   ],
-  authors: [{ name: 'Sarvesh Tiwari', url: 'https://sarvesh.dev' }],
+  authors: [{ name: 'Sarvesh Tiwari', url: 'https://portfolio-wine-ten-eyu3bhz0ea.vercel.app' }],
   creator: 'Sarvesh',
   publisher: 'Sarvesh',
   formatDetection: {
@@ -49,14 +49,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://sarvesh.dev'),
+  metadataBase: new URL('https://portfolio-wine-ten-eyu3bhz0ea.vercel.app'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://sarvesh.dev',
+    url: 'https://portfolio-wine-ten-eyu3bhz0ea.vercel.app',
     title: 'Sarvesh - Full Stack Developer | Laravel, React, Next.js Expert',
     description: 'Professional Full Stack Developer with 4+ years of experience in Laravel, React, Next.js, and modern web technologies. Specializing in scalable web applications and innovative solutions.',
     siteName: 'Sarvesh Portfolio',
@@ -112,7 +112,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable} dark`}>
       <head>
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -138,11 +138,11 @@ export default function RootLayout({
               "name": "Sarvesh",
               "jobTitle": "Full Stack Developer",
               "description": "Professional Full Stack Developer with expertise in Laravel, React, Next.js, and modern web technologies",
-              "url": "https://sarvesh.dev",
-              "image": "https://sarvesh.dev/profile.jpg",
+              "url": "https://portfolio-wine-ten-eyu3bhz0ea.vercel.app",
+              "image": "https://portfolio-wine-ten-eyu3bhz0ea.vercel.app/favicon.svg",
               "sameAs": [
-                "https://linkedin.com/in/sarvesh",
-                "https://github.com/sarvesh",
+                "https://www.linkedin.com/in/sarvesh-tiwari-45315b162/",
+                "https://github.com/skweb56",
                 "https://twitter.com/sarvesh"
               ],
               "worksFor": {
@@ -192,8 +192,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Sarvesh Portfolio",
-              "url": "https://sarvesh.dev",
-              "logo": "https://sarvesh.dev/logo.png",
+              "url": "https://portfolio-wine-ten-eyu3bhz0ea.vercel.app",
+              "logo": "https://portfolio-wine-ten-eyu3bhz0ea.vercel.app/favicon.svg",
               "description": "Professional portfolio showcasing Full Stack Development work and expertise",
               "founder": {
                 "@type": "Person",
@@ -202,7 +202,7 @@ export default function RootLayout({
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "customer service",
-                "email": "sarvesh@example.com",
+                "email": "skweb790@gmail.com",
                 "availableLanguage": "English"
               }
             })
@@ -217,7 +217,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Sarvesh Portfolio",
-              "url": "https://sarvesh.dev",
+              "url": "https://portfolio-wine-ten-eyu3bhz0ea.vercel.app",
               "description": "Professional Full Stack Developer Portfolio",
               "author": {
                 "@type": "Person",
@@ -225,7 +225,7 @@ export default function RootLayout({
               },
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://sarvesh.dev/search?q={search_term_string}",
+                "target": "https://portfolio-wine-ten-eyu3bhz0ea.vercel.app/search?q={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })
